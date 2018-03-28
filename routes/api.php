@@ -1,5 +1,7 @@
 <?php
 
+use App\Services\Currency\Currency;
+use App\Services\Currency\CurrencyLoaderFromApi;
 use Illuminate\Http\Request;
 
 /*
@@ -18,16 +20,20 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('currency', function () {
-    return [
-        [
-            'name' => '2GO Group',
-            'volume' => 19000,
-            'amount' => 35.58,
-        ],
-        [
-            'name' => 'HOUSE PREF A',
-            'volume' => 21000,
-            'amount' => 13.54,
-        ]
-    ];
+    $currency = new Currency(new CurrencyLoaderFromApi('http://phisix-api3.appspot.com/stocks.json'));
+
+    return $currency->all();
+
+//    return [
+//        [
+//            'name' => '2GO Group',
+//            'volume' => 19000,
+//            'amount' => 35.58,
+//        ],
+//        [
+//            'name' => 'HOUSE PREF A',
+//            'volume' => 21000,
+//            'amount' => 13.54,
+//        ]
+//    ];
 });
