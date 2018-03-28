@@ -47417,6 +47417,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -47426,20 +47430,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     methods: {
-        setCurrencyList: function setCurrencyList(list) {
-            this.currencyList = list;
+        setCurrencyList: function setCurrencyList() {
+            var vm = this;
+
+            axios.get('/api/currency').then(function (response) {
+                vm.currencyList = response.data;
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        updateCurrencyList: function updateCurrencyList() {
+            this.setCurrencyList();
         }
     },
     mounted: function mounted() {
-        this.setCurrencyList([{
-            name: '2GO Group',
-            volume: 19600,
-            amount: 18.34
-        }, {
-            name: 'HOUSE PREF A',
-            volume: 23600,
-            amount: 23.31
-        }]);
+        this.setCurrencyList();
     }
 });
 
@@ -47452,10 +47457,30 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _vm._m(0),
+    _c(
+      "nav",
+      { staticClass: "navbar navbar-light bg-light justify-content-between" },
+      [
+        _c("span", { staticClass: "navbar-brand" }, [_vm._v("Список валют")]),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "btn btn-outline-success my-2 my-sm-0",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.updateCurrencyList($event)
+              }
+            }
+          },
+          [_vm._v("\n            Обновить\n        ")]
+        )
+      ]
+    ),
     _vm._v(" "),
     _c("table", { staticClass: "table" }, [
-      _vm._m(1),
+      _vm._m(0),
       _vm._v(" "),
       _c(
         "tbody",
@@ -47475,22 +47500,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "nav",
-      { staticClass: "navbar navbar-light bg-light justify-content-between" },
-      [
-        _c("span", { staticClass: "navbar-brand" }, [_vm._v("Список валют")]),
-        _vm._v(" "),
-        _c("button", { staticClass: "btn btn-outline-success my-2 my-sm-0" }, [
-          _vm._v("Обновить")
-        ])
-      ]
-    )
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement

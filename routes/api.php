@@ -16,3 +16,18 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('currency', function () {
+    return [
+        [
+            'name' => '2GO Group',
+            'volume' => 19000,
+            'amount' => 35.58,
+        ],
+        [
+            'name' => 'HOUSE PREF A',
+            'volume' => 21000,
+            'amount' => 13.54,
+        ]
+    ];
+});

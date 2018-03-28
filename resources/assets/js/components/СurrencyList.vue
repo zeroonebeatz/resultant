@@ -2,7 +2,11 @@
     <div class="container">
         <nav class="navbar navbar-light bg-light justify-content-between">
             <span class="navbar-brand" >Список валют</span>
-            <button class="btn btn-outline-success my-2 my-sm-0">Обновить</button>
+            <button @click.prevent="updateCurrencyList"
+                    class="btn btn-outline-success my-2 my-sm-0"
+            >
+                Обновить
+            </button>
         </nav>
 
         <table class="table">
@@ -35,23 +39,21 @@
             }
         },
         methods: {
-            setCurrencyList (list) {
-                this.currencyList = list;
+            setCurrencyList () {
+                let vm = this;
+
+                axios.get('/api/currency').then(function (response) {
+                    vm.currencyList = response.data
+                }).catch(function (error) {
+                    console.log(error);
+                });
+            },
+            updateCurrencyList(){
+                this.setCurrencyList()
             }
         },
         mounted (){
-            this.setCurrencyList([
-                {
-                    name: '2GO Group',
-                    volume: 19600,
-                    amount: 18.34
-                },
-                {
-                    name: 'HOUSE PREF A',
-                    volume: 23600,
-                    amount: 23.31
-                }
-            ])
+            this.setCurrencyList()
         }
     }
 </script>
