@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('currency-list', require('./components/СurrencyList.vue'));
 
 const app = new Vue({
     el: '#app'
