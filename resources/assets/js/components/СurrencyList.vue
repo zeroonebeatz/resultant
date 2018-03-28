@@ -17,7 +17,7 @@
 
             <tbody>
                 <tr v-for="(currency, idx) in currencyList">
-                    <th scope="row">{{idx}}</th>
+                    <th scope="row">{{idx+1}}</th>
                     <td>{{ currency.name }}</td>
                     <td>{{ currency.volume }}</td>
                     <td>{{ currency.amount }}</td>

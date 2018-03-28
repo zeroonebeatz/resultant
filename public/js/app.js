@@ -47461,7 +47461,7 @@ var render = function() {
         "tbody",
         _vm._l(_vm.currencyList, function(currency, idx) {
           return _c("tr", [
-            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(idx))]),
+            _c("th", { attrs: { scope: "row" } }, [_vm._v(_vm._s(idx + 1))]),
             _vm._v(" "),
             _c("td", [_vm._v(_vm._s(currency.name))]),
             _vm._v(" "),
